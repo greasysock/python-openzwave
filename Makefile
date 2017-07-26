@@ -104,6 +104,10 @@ uninstall:
 	${PYTHON_EXEC} setup-api.py develop --uninstall
 	${PYTHON_EXEC} setup-manager.py develop --uninstall
 	${PYTHON_EXEC} setup-web.py develop --uninstall
+
+63
+
+​
 	${PYTHON_EXEC} setup.py develop --uninstall --flavor=dev
 	-rm -f libopenzwave.so
 	-rm -f src-lib/libopenzwave*.so
@@ -281,7 +285,7 @@ src-lib/libopenzwave/libopenzwave.cpp: openzwave/.lib/
 	${PYTHON_EXEC} setup-lib.py build --flavor=dev
 
 openzwave:
-	git clone git://github.com/OpenZWave/open-zwave.git openzwave
+	git clone https://github.com/greasysock/open-zwave.git openzwave
 
 openzwave.gzip:
 	wget --no-check-certificate https://codeload.github.com/OpenZWave/open-zwave/zip/master
