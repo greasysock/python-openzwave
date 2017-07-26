@@ -14,7 +14,7 @@ PYLINTOPTS    = --max-line-length=140 --max-args=9 --extension-pkg-whitelist=zmq
 -include CONFIG.make
 
 ifndef PYTHON_EXEC
-PYTHON_EXEC=python
+PYTHON_EXEC=python3
 endif
 
 ifndef NOSE_EXEC
@@ -104,10 +104,6 @@ uninstall:
 	${PYTHON_EXEC} setup-api.py develop --uninstall
 	${PYTHON_EXEC} setup-manager.py develop --uninstall
 	${PYTHON_EXEC} setup-web.py develop --uninstall
-
-63
-
-​
 	${PYTHON_EXEC} setup.py develop --uninstall --flavor=dev
 	-rm -f libopenzwave.so
 	-rm -f src-lib/libopenzwave*.so
