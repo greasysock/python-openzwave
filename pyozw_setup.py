@@ -569,7 +569,7 @@ class Template(object):
         except Exception:
             log.warn("Can't get package list from pip.")
         
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/master'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/master'):
         #Get openzwave
         """download an archive to a specific location"""
         dest,tail = os.path.split(self.openzwave)
@@ -638,7 +638,7 @@ class DevTemplate(Template):
         ctx = system_context(ctx, openzwave=opzw_dir, static=True)
         return ctx
 
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/master'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/master'):
         return True
 
 class GitTemplate(Template):
@@ -654,7 +654,7 @@ class GitTemplate(Template):
         ctx = system_context(ctx, openzwave=self.openzwave, static=True)
         return ctx
 
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/master'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/master'):
         return Template.get_openzwave(self, url)
 
     def clean_all(self):
@@ -710,13 +710,13 @@ class OzwdevTemplate(GitTemplate):
     def __init__(self, **args):
         Template.__init__(self, openzwave=os.path.join("openzwave-git", 'open-zwave-Dev'), **args)
     
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/Dev'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/Dev'):
         return Template.get_openzwave(self, url)
 
 
 class OzwdevSharedTemplate(GitSharedTemplate):
     
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/Dev'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/Dev'):
         return Template.get_openzwave(self, url)
 
 class EmbedTemplate(Template):
@@ -743,7 +743,7 @@ class EmbedTemplate(Template):
     def build_requires(self):
         return []
 
-    def get_openzwave(self, url='https://raw.githubusercontent.com/OpenZWave/python-openzwave/master/archives/open-zwave-master-{0}.zip'.format(pyozw_version)):
+    def get_openzwave(self, url='https://github.com/greasysock/python-openzwave/releases/download/v{}/open-zwave-master-{}.zip'.format(pyozw_version, pyozw_version)):
         ret =  Template.get_openzwave(self, url)
         shutil.copyfile(os.path.join(self.openzwave,'python-openzwave','openzwave.vers.cpp'), os.path.join(self.openzwave,'cpp','src','vers.cpp'))
         return ret
@@ -819,7 +819,7 @@ class SharedTemplate(Template):
     def copy_openzwave_config(self):
         return False
 
-    def get_openzwave(self, url='https://codeload.github.com/OpenZWave/open-zwave/zip/master'):
+    def get_openzwave(self, url='https://codeload.github.com/greasysock/open-zwave/zip/master'):
         return True
 
 def parse_template(sysargv):
